@@ -12,5 +12,6 @@ import java.time.LocalDateTime;
 public class LinkProperties {
 
     ValidityPeriod validity;
+
     LocalDateTime validUntil;
 }

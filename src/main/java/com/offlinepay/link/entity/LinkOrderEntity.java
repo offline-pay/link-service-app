@@ -8,33 +8,35 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.annotation.processing.Generated;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@IdClass(OrderId.class)
+@Table(name = "LinkOrder")
+@IdClass(LinkOrderEntityKey.class)
 @Getter
 @Setter
 @ToString
-public class Order {
+public class LinkOrderEntity {
     @Id
     Integer merchantId;
-    @Id @GeneratedValue //auto
+
+    @Id
+    @GeneratedValue //auto
     Integer orderId;
 
     String prefix;
-    String name;
+    String firstName;
     String lastName;
+    String email;
     String bookingReference;
+    String bookingDescription;
     Integer amountMajor;
     Integer amountMinor;
     String currency;
+    String locale;
     LocalDateTime linkValidity;
-    String email;
-    String bookingDescription;
-    String language;
 
     @JMapConversion(from = {"bookingReferencePrefix"}, to = {"bookingReference"})
     public String conversion(String bookingPrefix) {
@@ -56,6 +58,7 @@ public class Order {
         ValidityPeriod period = linkProperties.getValidity();
         LocalDateTime dateTime = LocalDateTime.now();
         LocalDateTime expiryDateTime;
+
         switch (period) {
             case ONE_HR:
                 expiryDateTime = dateTime.plusHours(1);
@@ -71,9 +74,6 @@ public class Order {
                 break;
             case SIXTEEN_HR:
                 expiryDateTime = dateTime.plusHours(16);
-                break;
-            case ONE_D:
-                expiryDateTime = dateTime.plusDays(1);
                 break;
             case TWO_D:
                 expiryDateTime = dateTime.plusDays(2);
@@ -93,6 +93,7 @@ public class Order {
             case CUSTOM:
                 expiryDateTime = linkProperties.getValidUntil();
                 break;
+            case ONE_D:
             default:
                 expiryDateTime = dateTime.plusDays(1);
                 break;

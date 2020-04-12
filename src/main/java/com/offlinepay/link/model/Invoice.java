@@ -8,7 +8,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Invoice {
+
     String currencyCode;
+
     Integer amountMajor;
+
     Integer amountMinor;
 }

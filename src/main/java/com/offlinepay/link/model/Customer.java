@@ -1,7 +1,5 @@
 package com.offlinepay.link.model;
 
-import com.googlecode.jmapper.annotations.JMap;
-import com.offlinepay.link.entity.Order;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,13 +11,16 @@ import javax.validation.constraints.NotNull;
 @Setter
 @NoArgsConstructor
 public class Customer {
+
     @NotNull
     Prefix prefix;
+
     @NotNull
-    String name;
+    String firstName;
+
     @NotNull
     String familyName;
+
     @NotNull @Email
     String email;
-
 }
