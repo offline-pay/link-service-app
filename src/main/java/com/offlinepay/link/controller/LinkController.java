@@ -1,16 +1,14 @@
 package com.offlinepay.link.controller;
 
 import com.offlinepay.link.model.Link;
+import com.offlinepay.link.model.LinkOrder;
 import com.offlinepay.link.model.Order;
 import com.offlinepay.link.service.LinkService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -34,5 +32,11 @@ public class LinkController {
     }
 
     //validate link
+
+    @RequestMapping(path="/payment-links/{linkid}", method = RequestMethod.GET)
+    public LinkOrder validate(@PathVariable("linkid") String linkId) {
+        return linkService.validateLink(linkId);
+    }
+
 
 }

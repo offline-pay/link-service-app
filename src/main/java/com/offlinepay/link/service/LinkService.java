@@ -47,6 +47,7 @@ public class LinkService {
         LinkValidityEntity validity = LinkValidityEntity.builder().
                 merchantId(persistedOrder.getMerchantId()).
                 orderId(persistedOrder.getOrderId()).
+                validTill(persistedOrder.getLinkValidity()).
                 linkHash(HashUtil.hash(persistedOrder.getMerchantId() + "" + persistedOrder.getOrderId()))
                 .build();
 
