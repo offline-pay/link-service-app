@@ -12,6 +12,9 @@ import javax.validation.constraints.NotNull;
 public class Order {
 
     @NotNull
+    Merchant merchant;
+
+    @NotNull
     String bookingReferencePrefix;
 
     @NotNull

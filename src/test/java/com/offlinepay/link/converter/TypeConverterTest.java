@@ -1,5 +1,6 @@
 package com.offlinepay.link.converter;
 
+import com.neovisionaries.i18n.CurrencyCode;
 import com.offlinepay.link.model.*;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +23,7 @@ public class TypeConverterTest {
         customer.setFamilyName("Trump");
         model.setCustomer(customer);
         Invoice invoice = new Invoice();
-        invoice.setCurrencyCode("USD");
+        invoice.setCurrencyCode(CurrencyCode.USD);
         invoice.setAmountMajor(100);
         invoice.setAmountMinor(30);
         model.setInvoice(invoice);

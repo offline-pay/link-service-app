@@ -4,6 +4,7 @@ import com.offlinepay.link.converter.TypeConverter;
 import com.offlinepay.link.crypto.HashUtil;
 import com.offlinepay.link.entity.LinkOrderEntity;
 import com.offlinepay.link.entity.LinkValidityEntity;
+import com.offlinepay.link.model.Link;
 import com.offlinepay.link.model.LinkOrder;
 import com.offlinepay.link.model.Order;
 import com.offlinepay.link.repository.LinkValidityRepository;
@@ -23,7 +24,7 @@ public class LinkService {
 
     final ChannelService channelService;
 
-    @Value("link-base")
+    @Value("${link.base}")
     String linkBaseUrl;
 
     public LinkService(OrderRepository orderRepository, LinkValidityRepository linkValidityRepository,
@@ -39,7 +40,7 @@ public class LinkService {
      *  - generate a unique number which is mapped to saved order
      *  - create a link with unique number
      */
-    public String createLink(Order order) {
+    public Link createLink(Order order) {
 
         LinkOrderEntity persistedOrder = orderRepository.save(TypeConverter.convert(order));
 
@@ -51,7 +52,9 @@ public class LinkService {
 
         linkValidityRepository.save(validity);
 
-        return linkBaseUrl + "/links/" + validity.getLinkHash();
+        Link link = new Link();
+        link.setUrl(linkBaseUrl + "/payment-links/" + validity.getLinkHash());
+        return link;
     }
 
 

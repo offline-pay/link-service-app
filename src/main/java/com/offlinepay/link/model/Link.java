@@ -1,0 +1,12 @@
+package com.offlinepay.link.model;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+public class Link {
+    String url;
+}

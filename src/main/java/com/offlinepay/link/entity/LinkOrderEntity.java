@@ -1,6 +1,7 @@
 package com.offlinepay.link.entity;
 
 import com.googlecode.jmapper.annotations.JMapConversion;
+import com.neovisionaries.i18n.CurrencyCode;
 import com.offlinepay.link.model.LinkProperties;
 import com.offlinepay.link.model.Prefix;
 import com.offlinepay.link.model.ValidityPeriod;
@@ -38,8 +39,14 @@ public class LinkOrderEntity {
     String locale;
     LocalDateTime linkValidity;
 
+    @JMapConversion(from = {"currencyCode"}, to = {"currency"})
+    public String convertCurrency(CurrencyCode currencyCode) {
+        return currencyCode.name();
+    }
+
+
     @JMapConversion(from = {"bookingReferencePrefix"}, to = {"bookingReference"})
-    public String conversion(String bookingPrefix) {
+    public String conversionPrefix(String bookingPrefix) {
         return bookingPrefix + UUID.randomUUID().toString();
     }
 
