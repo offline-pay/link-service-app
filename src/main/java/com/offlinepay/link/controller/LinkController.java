@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/link/v1/")
+@RequestMapping("/v1/link")
 @Tag(name = "Link", description = "The Link API")
 public class LinkController {
 

@@ -14,6 +14,9 @@ public class TypeConverterTest {
     public void testOrderConverter() {
 
         Order model = new Order();
+        Merchant merchant = new Merchant();
+        merchant.setMerchantId(11L);
+        model.setMerchant(merchant);
         model.setBookingDescription("booking description");
         model.setBookingReferencePrefix("Test merchant prefix");
         Customer customer = new Customer();

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: link-service-app
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+  output:
+    ansi:
+      enabled: always
+logging:
+  level:
+    org.springframework.web.filter.CommonsRequestLoggingFilter: ERROR

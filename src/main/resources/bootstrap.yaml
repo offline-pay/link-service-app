@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: link-service-app
+  cloud:
+    client:
+      hostname: localhost
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        instance-id:  "${spring.application.name}:${random.int[1,999999]}"
+        health-check-path: /actuator/health
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    data-username: sa
+    password: test
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    generate-ddl: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: false
+link:
+  base: http://localhost:8080
+logging:
+  level:
+    root: DEBUG
+  file:
+    name: logs/${spring.application.name}.log
+  ##spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
+  ##spring.datasource.username=postgres
+  ##spring.datasource.password=mypostgres
+server:
+  port: 20001
+#port: 0 (for consul)
+
